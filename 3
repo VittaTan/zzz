@@ -1,0 +1,55 @@
+int led = 9; // пин, к которому подключен светодиод
+
+int brightness = 0; // яркость светодиода
+
+int fadeAmount = 10; // на сколько увеличить яркость светодиода
+
+// функция setup отрабатывает один раз после перезагрузки платы:
+
+void setup() {
+
+// объявляет 9 пин в качестве выхода:
+
+pinMode(led, OUTPUT);
+
+}
+
+void loop() {
+
+// устанавливает яркость 9 пина:
+
+analogWrite(led, brightness);
+
+// изменение яркости на следующей итерации с помощью цикла:
+
+if (brightness == 190 || brightness == 255)
+{
+  brightness = brightness + 6.5*fadeAmount;
+}
+if (brightness == 100 || brightness > 100 and brightness < 190)
+{
+  brightness = brightness + 3*fadeAmount;
+}
+if (brightness < 100)
+{
+  brightness = brightness + fadeAmount;
+}
+
+if (brightness == 5)
+{
+  brightness = brightness + 0.5*fadeAmount;
+}
+
+
+// меняет значение затухания на аналогичное с противоположным знаком при граничных значениях:
+
+if (brightness == 0 || brightness == 255) {
+
+fadeAmount = -fadeAmount ;
+
+}
+
+// задержка для отслеживания эффекта затухания
+
+delay(1000);
+}
